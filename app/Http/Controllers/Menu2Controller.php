@@ -13,7 +13,8 @@ class Menu2Controller extends Controller
      */
     public function index()
     {
-        //
+        $menu = Menu2::all();
+        return $menu;
     }
 
     /**
@@ -29,7 +30,17 @@ class Menu2Controller extends Controller
      */
     public function store(StoreMenu2Request $request)
     {
-        //
+        $menu = new Menu2;
+        $menu->name = $request->name;
+        $menu->price = $request->price;
+        $menu->description = $request->description;
+        $menu->category_id= $request->category_id;
+        $menu->offers = $request->offers;
+        $menu->allergens = $request->allergens;
+
+        $menu->save();
+
+        return $menu;
     }
 
     /**
@@ -53,7 +64,17 @@ class Menu2Controller extends Controller
      */
     public function update(UpdateMenu2Request $request, Menu2 $menu2)
     {
-        //
+        $menu = Menu2::find($request->id);
+        $menu->name = $request->name;
+        $menu->price = $request->price;
+        $menu->description = $request->description;
+        $menu->category_id= $request->category_id;
+        $menu->offers = $request->offers;
+        $menu->allergens = $request->allergens;
+
+        $menu->save();
+
+        return $menu;
     }
 
     /**
